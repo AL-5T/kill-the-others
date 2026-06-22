@@ -1,0 +1,132 @@
+// Asset Map (Read-Only)
+// Edit assets in the Media tab.
+// Use these IDs alongside lib to reference assets in your code:
+//
+// Example: lib.getAsset["player_sprite"]
+
+const assets = {
+  "red_soldier": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/red_soldier_0cb6a933-c11f-4c8f-8fef-e355f467ee8b.webp",
+    "type": "image",
+    "aspect_ratio": [
+      718,
+      1371
+    ]
+  },
+  "blue_soldier": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/blue_soldier_f27bbbef-2f69-40ff-bbd8-a60ab8a85edf.webp",
+    "type": "image",
+    "aspect_ratio": [
+      654,
+      1248
+    ]
+  },
+  "assault_rifle": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/assault_rifle_6c2568cd-4e37-42da-86ac-5d3ae9e88804.webp",
+    "type": "image",
+    "aspect_ratio": [
+      1405,
+      704
+    ]
+  },
+  "muzzle_flash": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/muzzle_flash_ccdb885a-a599-44f1-bec8-863fc80e44f4.webp",
+    "type": "image",
+    "aspect_ratio": [
+      802,
+      800
+    ]
+  },
+  "crosshair": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/crosshair_7349aa4f-4b36-4579-a4b1-80f51be1c488.webp",
+    "type": "image",
+    "aspect_ratio": [
+      554,
+      559
+    ]
+  },
+  "red_base_exterior": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/red_base_exterior_29b69f9c-ce08-40e0-86be-b2d928e216e9.webp",
+    "type": "image",
+    "aspect_ratio": [
+      1399,
+      820
+    ]
+  },
+  "blue_base_exterior": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/blue_base_exterior_02b35ca9-0ed8-4c48-9bc4-e5e10052fdab.webp",
+    "type": "image",
+    "aspect_ratio": [
+      1248,
+      730
+    ]
+  },
+  "central_building": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/central_building_22701e0a-02b3-4116-86cf-497622d29dd2.webp",
+    "type": "image",
+    "aspect_ratio": [
+      981,
+      803
+    ]
+  },
+  "sniper_tower": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/sniper_tower_3d50753c-575f-470b-8333-0f63ff06f9ea.webp",
+    "type": "image",
+    "aspect_ratio": [
+      617,
+      1487
+    ]
+  },
+  "crate_cover": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/crate_cover_d276b6fb-e2e7-4cea-ab55-0147ee76c433.webp",
+    "type": "image",
+    "aspect_ratio": [
+      979,
+      948
+    ]
+  },
+  "concrete_barrier": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/images/concrete_barrier_afe45a7f-2e4c-4e3e-98d4-ffca2774ec52.webp",
+    "type": "image",
+    "aspect_ratio": [
+      840,
+      666
+    ]
+  },
+  "reload_sound": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/sounds/effect/reload_sound_c0e7d573-7bcf-4533-b297-716de0b0d94f.mp3",
+    "type": "audio"
+  },
+  "hit_marker_sound": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/sounds/effect/hit_marker_sound_45821644-01b5-44de-8d70-926b7e5ed6cd.mp3",
+    "type": "audio"
+  },
+  "damage_taken_sound": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/sounds/effect/damage_taken_sound_f397a74d-be0e-40b6-b747-82503a6342cb.mp3",
+    "type": "audio"
+  },
+  "elimination_sound": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/sounds/effect/elimination_sound_43d53a5e-3107-4424-b392-81eda382bafa.mp3",
+    "type": "audio"
+  },
+  "respawn_sound": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/sounds/effect/respawn_sound_e1e11a6f-5996-404e-8add-98d7544e630b.mp3",
+    "type": "audio"
+  },
+  "background_music": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/sounds/effect/background_music_296f7923-506d-46fb-a5c4-a7850ddfb3f3.mp3",
+    "type": "audio"
+  },
+  "victory_sound": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/sounds/effect/victory_sound_54efcd4c-239c-4c7a-a23e-4df29597ac6e.mp3",
+    "type": "audio"
+  },
+  "defeat_sound": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/sounds/effect/defeat_sound_18e780f1-ae3c-45d8-8a8c-1724d9780637.mp3",
+    "type": "audio"
+  },
+  "footstep_sound": {
+    "url": "https://d2oir5eh8rty2e.cloudfront.net/assets/sounds/effect/footstep_sound_01a3357a-09f0-4673-86e3-afbf36c785e9.mp3",
+    "type": "audio"
+  }
+};
