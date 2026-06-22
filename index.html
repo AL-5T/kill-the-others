@@ -148,7 +148,7 @@ body { background:#111; color:#fff; font-family:'Segoe UI',sans-serif; overflow:
 <script>
 // ── constants ──────────────────────────────────────────────────────────────
 const GRAVITY=-28, JUMP_V=8.5, PSPEED=7, EYE_H=1.65;
-const MW=40, MD=40; // map world size
+const MW=120, MD=120; // map world size
 
 // ── map grid ───────────────────────────────────────────────────────────────
 const GRID=[
@@ -229,11 +229,16 @@ scene.add(sun);
     m.castShadow=m.receiveShadow=true; scene.add(m);
   }
 
-  const cmat=new THREE.MeshLambertMaterial({color:0x8b6914});
-  [[-4,4],[4,4],[4,-4],[-4,-4],[8,0],[-8,0],[0,8],[0,-8]].forEach(([x,z])=>{
-    const m=new THREE.Mesh(new THREE.BoxGeometry(1.2,1.2,1.2),cmat);
-    m.position.set(x,0.6,z); m.castShadow=m.receiveShadow=true; scene.add(m);
-  });
+  // Center wall replacing the middle blocks
+  const wallMat=new THREE.MeshLambertMaterial({color:0x666666});
+  const centerWall=new THREE.Mesh(
+    new THREE.BoxGeometry(20,3,1.5),
+    wallMat
+  );
+  centerWall.position.set(0,1.5,0);
+  centerWall.castShadow=true;
+  centerWall.receiveShadow=true;
+  scene.add(centerWall);
 })();
 
 // ── state ──────────────────────────────────────────────────────────────────
@@ -242,7 +247,8 @@ let playerTeam, pHP=100, pAmmo=30, score=0;
 let gameActive=false, isReloading=false, reloadT=0, shootCD=0;
 let velY=0, onGround=true, yaw=0, pitch=0;
 let mouseDown=false;
-const keys={};
+const keys={}; // always-on key tracking
+
 // ── agents ─────────────────────────────────────────────────────────────────
 function makeAgent(x,z,team,isPlayer){
   const a={
@@ -450,11 +456,10 @@ function stepPlayer(dt){
       document.getElementById('reload-txt').style.display='none';
     }
   }
-if(mouseDown){
-  doShoot();
-}
-
-   shootCD=Math.max(0,shootCD-dt);
+  if(mouseDown){
+    doShoot();
+  }
+  shootCD=Math.max(0,shootCD-dt);
 }
 
 function doShoot(){
@@ -462,7 +467,7 @@ function doShoot(){
   const pa=agents.find(a=>a.isPlayer);
   if(!pa||!pa.alive||isReloading||shootCD>0||pAmmo<=0) return;
   pAmmo--;
-  shootCD=0.08;
+  shootCD=0.13;
   if(pAmmo===0){ isReloading=true; reloadT=2.2; document.getElementById('reload-txt').style.display='block'; }
   const dir=new THREE.Vector3(0,0,-1).applyEuler(new THREE.Euler(pitch,yaw,0,'YXZ')).normalize();
   const sp=0.02;
@@ -567,19 +572,12 @@ window.addEventListener('keydown',e=>{
 });
 window.addEventListener('keyup',e=>{ keys[e.key.toLowerCase()]=false; });
 
-window.addEventListener('mousedown', e => {
-  if (!gameActive) return;
-
-  if (document.pointerLockElement === renderer.domElement) {
-    mouseDown = true;
-  } else {
-    doLock();
-  }
+window.addEventListener('mousedown',e=>{
+  if(!gameActive) return;
+  if(document.pointerLockElement===renderer.domElement) mouseDown=true;
+  else doLock();
 });
-
-window.addEventListener('mouseup', () => {
-  mouseDown = false;
-});
+window.addEventListener('mouseup',()=>{ mouseDown=false; });
 
 // ── start game ─────────────────────────────────────────────────────────────
 function pickTeam(team){
@@ -611,13 +609,13 @@ function pickTeam(team){
   const playerPos=openSpot(true);
   camera.position.set(playerPos.x,EYE_H,playerPos.z);
 
-  for(let i=0;i<10;i++){
+  for(let i=0;i<15;i++){
     const isP=(i===0&&team==='ct');
     const pos=isP?playerPos:openSpot(false);
     const a=makeAgent(pos.x,pos.z,'ct',isP);
     agents.push(a);
   }
-  for(let i=0;i<10;i++){
+  for(let i=0;i<15;i++){
     const isP=(i===0&&team==='t');
     const pos=isP?playerPos:openSpot(false);
     const a=makeAgent(pos.x,pos.z,'t',isP);
@@ -647,4 +645,5 @@ function loop(ts){
 requestAnimationFrame(loop);
 </script>
 </body>
+</html>
 </html>
