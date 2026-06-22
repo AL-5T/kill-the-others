@@ -241,8 +241,8 @@ let agents=[], bullets=[], flashes=[];
 let playerTeam, pHP=100, pAmmo=30, score=0;
 let gameActive=false, isReloading=false, reloadT=0, shootCD=0;
 let velY=0, onGround=true, yaw=0, pitch=0;
-const keys={}; // always-on key tracking
-
+let mouseDown=false;
+const keys={};
 // ── agents ─────────────────────────────────────────────────────────────────
 function makeAgent(x,z,team,isPlayer){
   const a={
@@ -450,7 +450,11 @@ function stepPlayer(dt){
       document.getElementById('reload-txt').style.display='none';
     }
   }
-  shootCD=Math.max(0,shootCD-dt);
+if(mouseDown){
+  doShoot();
+}
+
+   shootCD=Math.max(0,shootCD-dt);
 }
 
 function doShoot(){
@@ -458,7 +462,7 @@ function doShoot(){
   const pa=agents.find(a=>a.isPlayer);
   if(!pa||!pa.alive||isReloading||shootCD>0||pAmmo<=0) return;
   pAmmo--;
-  shootCD=0.13;
+  shootCD=0.08;
   if(pAmmo===0){ isReloading=true; reloadT=2.2; document.getElementById('reload-txt').style.display='block'; }
   const dir=new THREE.Vector3(0,0,-1).applyEuler(new THREE.Euler(pitch,yaw,0,'YXZ')).normalize();
   const sp=0.02;
@@ -563,10 +567,18 @@ window.addEventListener('keydown',e=>{
 });
 window.addEventListener('keyup',e=>{ keys[e.key.toLowerCase()]=false; });
 
-window.addEventListener('click',e=>{
-  if(!gameActive) return;
-  if(document.pointerLockElement===renderer.domElement) doShoot();
-  else doLock();
+window.addEventListener('mousedown', e => {
+  if (!gameActive) return;
+
+  if (document.pointerLockElement === renderer.domElement) {
+    mouseDown = true;
+  } else {
+    doLock();
+  }
+});
+
+window.addEventListener('mouseup', () => {
+  mouseDown = false;
 });
 
 // ── start game ─────────────────────────────────────────────────────────────
